@@ -29,7 +29,7 @@ pkg> add https://github.com/<user>/MassRoots.jl
 pkg> add Arblib        # optional: the rigorous evaluator
 ```
 
-Julia 1.10 or newer.
+Julia 1.11 or newer.
 
 ## Quick start
 
@@ -53,7 +53,7 @@ evaluate(ArbEvaluator(), H, 89//2, atol)   # HValue: value, error bound, diagnos
 
 More in [`examples/`](examples): `quickstart.jl`, `custom_evaluator.jl`,
 `compare_evaluators.jl`, `general_function.jl` (run with
-`julia --project=examples examples/<file>.jl`, Julia ≥ 1.11).
+`julia --project=examples examples/<file>.jl`).
 
 ## Building blocks
 
