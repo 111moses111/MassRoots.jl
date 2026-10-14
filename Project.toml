@@ -1,0 +1,30 @@
+name = "MassRoots"
+uuid = "b86dbf4c-1759-4372-a742-d624a1b03976"
+authors = ["Moisej Plistiev"]
+version = "0.1.0"
+
+[deps]
+QuadGK = "1fd47b50-473d-5c70-9696-f719f8f3bcdc"
+SpecialFunctions = "276daf66-3868-5448-9aa4-cd146d93841b"
+
+[weakdeps]
+Arblib = "fb37089c-8514-4489-9461-98f9c8763369"
+
+[extensions]
+MassRootsArblibExt = "Arblib"
+
+[compat]
+Arblib = "1.8"
+Primes = "0.5"
+QuadGK = "2.11"
+SpecialFunctions = "2.4"
+Test = "1"
+julia = "1.10"
+
+[extras]
+Arblib = "fb37089c-8514-4489-9461-98f9c8763369"
+Primes = "27ebfcd6-29c5-5fa9-bf4b-fb8fc14df3ae"
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test", "Primes", "Arblib"]

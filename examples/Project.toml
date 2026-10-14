@@ -1,0 +1,7 @@
+[deps]
+Arblib = "fb37089c-8514-4489-9461-98f9c8763369"
+MassRoots = "b86dbf4c-1759-4372-a742-d624a1b03976"
+Primes = "27ebfcd6-29c5-5fa9-bf4b-fb8fc14df3ae"
+
+[sources]
+MassRoots = {path = ".."}
