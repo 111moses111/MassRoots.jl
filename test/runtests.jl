@@ -16,7 +16,7 @@ querybound(M) = 2 + ceillog2(big(M))                 # Theorem 6: 2 + ⌈log₂ 
     @test half(3) == 7 // 2
 end
 
-@testset "parameters (Theorem 5, §5.6–5.8)" begin
+@testset "parameters (Theorem 5, Propositions 1–2)" begin
     for t in (4, 15, 91, 1001, 2^20 - 1, big(2)^64 - 1, big(2)^200 + 1)
         P = mass_test_parameters(FactorProblem(t))
         n = bitlength(t)
@@ -26,17 +26,17 @@ end
         @test P.w == 1 // (2 * P.S * P.ν)
         @test P.background == P.w / 2 && P.minmass == P.w
         @test P.threshold == 3 * P.w / 4
-        @test P.p <= 3n + 7                           # (5.38)–(5.39)
+        @test P.p <= 3n + 7                           # Proposition 1
         @test P.atol <= P.w / 16                      # (5.29)
         @test bitlength(P.α) <= 4n + 2                # Theorem 6
     end
     for (a, b, c) in ((1, 1, 1), (2, 3, 50), (3, 5, 1000), (2^20 - 1, 2^20 - 1, 2^20 - 1))
         P = mass_test_parameters(QuadraticProblem(a, b, c))
-        @test P.p <= 3 * maximum(bitlength, (a, b, c)) + 15     # (5.51)
+        @test P.p <= 3 * maximum(bitlength, (a, b, c)) + 15     # Proposition 2
     end
     P1 = mass_test_parameters(450)
     P2 = mass_test_parameters(450, ShiftedPower(1, 0))
-    @test (P1.α, P1.threshold, P1.p) == (P2.α, P2.threshold, P2.p)   # (5.58) → (5.18)
+    @test (P1.α, P1.threshold, P1.p) == (P2.α, P2.threshold, P2.p)   # modulation (1, 0) gives (5.18)
     P3 = mass_test_parameters(450, ShiftedPower(3, 1 // 2))
     @test P3.background < P3.threshold < P3.minmass
     @test P3.background + 2P3.atol < P3.threshold < P3.minmass - 2P3.atol

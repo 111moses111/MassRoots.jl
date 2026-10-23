@@ -33,7 +33,7 @@ struct NoModulation end
 """
     ShiftedPower(β, ρ)
 
-Background-corrected modulation `W(q) = (q + ρ)^β - ρ^β` (§2.3 and §5.8), with an
+Background-corrected modulation `W(q) = (q + ρ)^β - ρ^β` (§2.3 and (5.2)), with an
 integer `β ≥ 1` and a rational `ρ ≥ 0`.
 """
 struct ShiftedPower

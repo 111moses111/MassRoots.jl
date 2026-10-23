@@ -1,4 +1,5 @@
-# Certified parameters of the integral-mass test (Theorem 5 and §5.8 of the paper).
+# Certified parameters of the integral-mass test (Theorem 5 of the paper; the extension to
+# `ShiftedPower` follows an earlier version of the paper and is not in the current text).
 
 """
     MassTestParameters
@@ -32,7 +33,9 @@ end
     mass_test_parameters(S, modulation = NoModulation())
     mass_test_parameters(prob::IntegerZeroProblem; modulation = NoModulation())
 
-Parameters of Theorem 5 (`NoModulation`) or of §5.8 (`ShiftedPower`). A scale below 8 is
+Parameters of Theorem 5 (`NoModulation`). For `ShiftedPower` the same argument is applied
+to the modulated kernel with the scale enlarged to `Q`; this extension appeared in an
+earlier version of the paper and is not part of the current text. A scale below 8 is
 raised to 8, which keeps all three hypotheses valid.
 """
 function mass_test_parameters(S::Integer, modulation = NoModulation())

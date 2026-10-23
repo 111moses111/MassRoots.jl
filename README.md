@@ -94,7 +94,7 @@ different approaches can be compared on equal terms.
 | Part | Types |
 |---|---|
 | Problems | `GeneralProblem(f, a, b)` for any real analytic `f` with arbitrary zeros, `IntegerZeroProblem(φ, candidates, S; isroot)` for your own problem with integer zeros, `FactorProblem(t)`, `QuadraticProblem(a, b, c)` |
-| Kernels | `GaussKernel()` (`exp(-s²)`), `ErfcKernel()`; optional modulation `ShiftedPower(β, ρ)` (§2.3, §5.8) |
+| Kernels | `GaussKernel()` (`exp(-s²)`), `ErfcKernel()`; optional modulation `ShiftedPower(β, ρ)` (§2.3; its certified parameters extend Theorem 5 and are not in the current text of the paper) |
 | Parameters | `mass_test_parameters(problem)`: `S`, `α = S²`, `w`, threshold `θ = 3w/4`, `p`, `atol = 2⁻ᵖ`, all exact |
 | Evaluators | see below; any subtype of `AbstractEvaluator` |
 | Search | `localize` (any problem), `locate`, `decide`, `find_divisor`, `factorize` (certified problems) |
