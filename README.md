@@ -25,7 +25,7 @@ different approaches can be compared on equal terms.
 ## Installation
 
 ```julia
-pkg> add https://github.com/<user>/MassRoots.jl
+pkg> add https://github.com/111moses111/MassRoots.jl
 pkg> add Arblib        # optional: the rigorous evaluator
 ```
 
