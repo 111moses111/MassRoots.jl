@@ -1,9 +1,12 @@
-# Problems: a nonnegative function φ on a search domain.
+# Problems: a real analytic function on a search domain, given through the nonnegative φ
+# used in the kernel (φ = f², or φ = f when f ≥ 0).
 
 """
     AbstractProblem
 
-A nonnegative function `φ` whose zeros are to be located. Every problem implements
+A search problem for the real zeros of a real analytic function `f`, given through the
+nonnegative function `φ` used in the kernel: `φ = f²` in general, or `φ = f` when `f` is
+already nonnegative. Every problem implements
 
 * `phi(prob, x)` – the value `φ(x)` for any number type of `x` (real or complex: rigorous
   evaluators such as [`ArbEvaluator`](@ref) evaluate `φ` on complex balls);
@@ -128,10 +131,11 @@ scalebits(p::QuadraticProblem) = bitlength(p.c) + bitlength(p.a)
 
 # --------------------------------------------------------------------------------------
 """
-    GeneralProblem(f, a, b; square = false, x0 = a, scalebits = 0)
+    GeneralProblem(f, a, b; square = true, x0 = a, scalebits = 0)
 
-Any function on `[a, b]`. With `square = true` the problem uses `φ = f²`, which is the
-choice for a real-valued `f` that changes sign; otherwise `f` itself must be nonnegative.
+Any real-valued analytic function `f` of a real variable on `[a, b]`. By default the
+problem uses `φ = f²`, which works whether or not `f` changes sign; pass `square = false`
+to use `φ = f` when `f` is known to be nonnegative.
 Zeros need not be integers. No mass gap is certified: [`localize`](@ref) takes the scale
 `α` and the threshold from the caller.
 """
@@ -144,7 +148,7 @@ struct GeneralProblem{F} <: AbstractProblem
     scalebits::Int
 end
 
-function GeneralProblem(f, a::Real, b::Real; square::Bool = false, x0 = a,
+function GeneralProblem(f, a::Real, b::Real; square::Bool = true, x0 = a,
                         scalebits::Integer = 0)
     A, B = rationalize_exact(a), rationalize_exact(b)
     A < B || throw(ArgumentError("need a < b"))

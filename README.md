@@ -4,9 +4,11 @@ Locating real zeros with integral mass tests, following
 *M. Plistiev, "On Some Connections Between Computation of Integrals of Analytic Functions,
 Root Finding, Integer Factorization and NP-Completeness"* (2026, submitted).
 
-A nonnegative function `φ` becomes a kernel `q_α(x) = g(α φ(x))` with
-`g(s) = exp(-s²)` or `g(s) = erfc(s)`. The kernel equals 1 at the zeros of `φ` and is
-small elsewhere. The difference `H(v) - H(u)` of its primitive
+The method applies to any real-valued analytic function `f` of a real variable. It is
+turned into a kernel `q_α(x) = g(α φ(x))` with `φ = f²` (or `φ = f` when `f` is already
+nonnegative, as in the built-in arithmetic problems) and `g(s) = exp(-s²)` or
+`g(s) = erfc(s)`. The kernel equals 1 at the zeros of `f`, including zeros where `f` does
+not change sign, and is small elsewhere. The difference `H(v) - H(u)` of its primitive
 `H(x) = ∫_{x₀}^{x} q_α` is the mass of `[u, v]`; a threshold on the mass tells whether
 the interval contains a zero, and bisection locates it.
 
@@ -59,7 +61,7 @@ More in [`examples/`](examples): `quickstart.jl`, `custom_evaluator.jl`,
 
 | Part | Types |
 |---|---|
-| Problems | `FactorProblem(t)`, `QuadraticProblem(a, b, c)`, `IntegerZeroProblem(φ, candidates, S; isroot)` for your own problem with integer zeros, `GeneralProblem(f, a, b; square)` for arbitrary zeros |
+| Problems | `FactorProblem(t)`, `QuadraticProblem(a, b, c)`, `IntegerZeroProblem(φ, candidates, S; isroot)` for your own problem with integer zeros, `GeneralProblem(f, a, b)` for any real analytic `f` with arbitrary zeros |
 | Kernels | `GaussKernel()` (`exp(-s²)`), `ErfcKernel()`; optional modulation `ShiftedPower(β, ρ)` (§2.3, §5.8) |
 | Parameters | `mass_test_parameters(problem)`: `S`, `α = S²`, `w`, threshold `θ = 3w/4`, `p`, `atol = 2⁻ᵖ`, all exact |
 | Evaluators | see below; any subtype of `AbstractEvaluator` |
