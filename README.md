@@ -1,8 +1,8 @@
 # MassRoots.jl
 
 Locating real zeros with integral mass tests, following
-*M. Plistiev, "On some connections of integer factorization and computation of analytic
-functions"* (2026).
+*M. Plistiev, "On Some Connections Between Computation of Integrals of Analytic Functions,
+Root Finding, Integer Factorization and NP-Completeness"* (2026, submitted).
 
 A nonnegative function `φ` becomes a kernel `q_α(x) = g(α φ(x))` with
 `g(s) = exp(-s²)` or `g(s) = erfc(s)`. The kernel equals 1 at the zeros of `φ` and is
