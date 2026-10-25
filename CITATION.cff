@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the accompanying paper (preferred) or the software itself."
+title: "MassRoots.jl: localization of real zeros of real analytic functions by integral mass tests"
+type: software
+authors:
+  - family-names: Plistiev
+    given-names: Moisej
+version: 0.1.0
+date-released: 2026-10-25
+license: MIT
+repository-code: "https://github.com/111moses111/MassRoots.jl"
+keywords:
+  - root finding
+  - zero localization
+  - analytic functions
+  - integer factorization
+  - NP-completeness
+  - Julia
+preferred-citation:
+  type: unpublished
+  authors:
+    - family-names: Plistiev
+      given-names: Moisej
+  title: "On Some Connections Between Computation of Integrals of Analytic Functions, Root Finding, Integer Factorization and NP-Completeness"
+  year: 2026
+  status: submitted
+  notes: "Manuscript submitted for publication"

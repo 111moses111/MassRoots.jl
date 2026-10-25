@@ -1,5 +1,9 @@
 # MassRoots.jl
 
+[![CI](https://github.com/111moses111/MassRoots.jl/actions/workflows/CI.yml/badge.svg)](https://github.com/111moses111/MassRoots.jl/actions/workflows/CI.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Julia 1.11+](https://img.shields.io/badge/Julia-1.11%2B-9558B2.svg)](https://julialang.org)
+
 **Localization of real zeros of real analytic functions by integral mass tests,
 including zeros at which the function does not change sign.**
 
@@ -18,6 +22,14 @@ Integrals of Analytic Functions, Root Finding, Integer Factorization and
 NP-Completeness"* (2026, submitted), where it is also used to prove polynomial-time
 reductions from integer factorization and an NP-complete Diophantine problem to the
 evaluation of `H` (see [Certified applications](#certified-applications-from-the-paper)).
+
+**Contents:** [Installation](#installation) ·
+[Quick start](#quick-start-a-zero-without-a-sign-change) ·
+[Certified applications](#certified-applications-from-the-paper) ·
+[Evaluators of H](#interchangeable-evaluators-of-h) ·
+[Your own problem](#your-own-problem) · [Guarantees](#guarantees) ·
+[What it costs](#what-it-costs) · [Reproducing the results](#reproducing-the-results) ·
+[Citing](#citing)
 
 ## Installation
 
@@ -44,6 +56,12 @@ ivals, oracle = localize(prob, QuadGKEvaluator(Float64; segment_length = 1//64);
 `f` does not change sign at `x = 1` (`f(0.9) ≈ -0.011`, `f(1.1) ≈ -0.009`), so methods
 that bracket a sign change cannot see this zero; the mass test finds both. The interval
 around the double zero is wider because `f²` is flatter there; a larger `α` narrows it.
+
+![f, the kernel and the primitive H for the double-zero example](docs/assets/double_zero.svg)
+
+*Top: `f`. Middle: the kernel `q = exp(-(α f²)²)` with `α = 1000`. Bottom: the primitive
+`H`; its two steps are the zeros. Shaded: the intervals returned by `localize`. Produced by
+`examples/readme_figure.jl`.*
 
 For a general `f`, the scale `α`, the threshold and the resolution are chosen by you, and
 there is no certified gap: a small positive minimum of `f²` can pass the test, and a peak
@@ -78,9 +96,7 @@ atol = mass_test_parameters(FactorProblem(91)).atol
 evaluate(ArbEvaluator(), H, 89//2, atol)   # HValue: value, error bound, diagnostics
 ```
 
-More in [`examples/`](examples): `double_zero.jl`, `general_function.jl`,
-`quickstart.jl`, `custom_evaluator.jl`, `compare_evaluators.jl` (run with
-`julia --project=examples examples/<file>.jl`).
+More in [`examples/`](examples); see [Reproducing the results](#reproducing-the-results).
 
 ## Interchangeable evaluators of H
 
@@ -183,15 +199,58 @@ include all queries):
 | 2021 = 43·47 | 13 | — | — | 11.9 s | 3.0 s |
 
 The rigorous Arb integration is far cheaper here than the safe uniform subdivision,
-and its time grows roughly linearly in `t`, i.e. exponentially in the bit length. How
-the cost of computing `H` depends on the input is the open question of §6 of the paper,
-and the evaluator interface exists to study it.
+and its time grows roughly linearly in `t`, i.e. exponentially in the bit length.
+
+For larger semiprimes `t = p·q` with prime factors of similar size
+(`examples/timing_semiprimes.jl`; Arb, erfc kernel, 2-core machine):
+
+| t | digits | factors | queries | total time | longest query |
+|---|---|---|---|---|---|
+| 1 147 | 4 | 31·37 | 12 | 1.2 s | 0.3 s |
+| 10 403 | 5 | 101·103 | 16 | 11.7 s | 2.1 s |
+| 104 927 | 6 | 317·331 | 19 | 3 min 14 s | 30 s |
+| 1 022 117 | 7 | 1009·1013 | 22 | 45 min | 3 min 51 s |
+
+The number of queries follows `2 + ⌈log₂ M⌉` (Theorem 6), while the time grows roughly
+like `t^1.15`. How the cost of computing `H` depends on the input is the open question of
+§6 of the paper, and the evaluator interface exists to study it.
+
+## Reproducing the results
+
+All examples run with `julia --project=examples examples/<file>.jl`.
+
+| File | What it shows |
+|---|---|
+| `double_zero.jl` | the quick start: a double zero without a sign change and a simple zero |
+| `general_function.jl` | example (2.6) of the paper, `f(x) = sin(πx/2) + sin²(4πx) + 0.1` |
+| `readme_figure.jl` | regenerates the figure above (`docs/assets/double_zero.svg`) |
+| `quickstart.jl` | divisor search, factorization and the quadratic problem with certified parameters |
+| `custom_evaluator.jl` | how to plug in your own way of computing `H` |
+| `compare_evaluators.jl` | the first timing table above |
+| `timing_semiprimes.jl` | the second timing table above (the case `t ≈ 10⁶` is commented out) |
 
 ## Tests
 
 ```julia
 pkg> test MassRoots
 ```
+
+## Citing
+
+If you use this package, please cite the accompanying paper:
+
+```bibtex
+@unpublished{Plistiev2026,
+  author = {Moisej Plistiev},
+  title  = {On Some Connections Between Computation of Integrals of Analytic Functions,
+            Root Finding, Integer Factorization and NP-Completeness},
+  note   = {Manuscript submitted for publication},
+  year   = {2026}
+}
+```
+
+Citation metadata for the software itself is in [`CITATION.cff`](CITATION.cff); GitHub
+shows it under "Cite this repository".
 
 ## License
 
