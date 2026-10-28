@@ -20,7 +20,7 @@ wherever `f` is.
 
 The method is introduced in *M. Plistiev, "On Some Connections Between Computation of
 Integrals of Analytic Functions, Root Finding, Integer Factorization and
-NP-Completeness"* (2026, submitted; [preprint, PDF](paper/Preprint_1.pdf)), where it is also used to prove polynomial-time
+NP-Completeness"* (preprint, 2026, [PDF](paper/Preprint_1.pdf)), where it is also used to prove polynomial-time
 reductions from integer factorization and an NP-complete Diophantine problem to the
 evaluation of `H` (see [Certified applications](#certified-applications-from-the-paper)).
 
@@ -245,7 +245,8 @@ If you use this package, please cite the accompanying paper:
   author = {Moisej Plistiev},
   title  = {On Some Connections Between Computation of Integrals of Analytic Functions,
             Root Finding, Integer Factorization and NP-Completeness},
-  note   = {Manuscript submitted for publication},
+  note   = {Preprint},
+  url    = {https://github.com/111moses111/MassRoots.jl/blob/main/paper/Preprint_1.pdf},
   year   = {2026}
 }
 ```

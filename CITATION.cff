@@ -23,5 +23,5 @@ preferred-citation:
       given-names: Moisej
   title: "On Some Connections Between Computation of Integrals of Analytic Functions, Root Finding, Integer Factorization and NP-Completeness"
   year: 2026
-  status: submitted
-  notes: "Manuscript submitted for publication"
+  status: preprint
+  url: "https://github.com/111moses111/MassRoots.jl/blob/main/paper/Preprint_1.pdf"
