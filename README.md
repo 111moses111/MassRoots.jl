@@ -3,6 +3,7 @@
 [![CI](https://github.com/111moses111/MassRoots.jl/actions/workflows/CI.yml/badge.svg)](https://github.com/111moses111/MassRoots.jl/actions/workflows/CI.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Julia 1.11+](https://img.shields.io/badge/Julia-1.11%2B-9558B2.svg)](https://julialang.org)
+[![Preprint: PDF](https://img.shields.io/badge/Preprint-PDF-b31b1b.svg)](paper/Preprint_1.pdf)
 
 **Localization of real zeros of real analytic functions by integral mass tests,
 including zeros at which the function does not change sign.**
@@ -19,7 +20,7 @@ wherever `f` is.
 
 The method is introduced in *M. Plistiev, "On Some Connections Between Computation of
 Integrals of Analytic Functions, Root Finding, Integer Factorization and
-NP-Completeness"* (2026, submitted), where it is also used to prove polynomial-time
+NP-Completeness"* (2026, submitted; [preprint, PDF](paper/Preprint_1.pdf)), where it is also used to prove polynomial-time
 reductions from integer factorization and an NP-complete Diophantine problem to the
 evaluation of `H` (see [Certified applications](#certified-applications-from-the-paper)).
 
